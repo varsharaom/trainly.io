@@ -1,0 +1,148 @@
+<div ng-include="'views/common/templates/site-header.view.client.html'">
+
+</div>
+
+
+	<div class="main-body">
+		<div class="container">
+			<div class="page">
+                <div >
+                    <div class="go-back"><a go-back>Go Back</a></div>
+                    <ol class="breadcrumb">
+                        <li> <a href="#!/home">Home</a></li>
+                        <li class="active">{{model.Name}}</li>
+                    </ol>
+                </div>
+                <h1 class="text-center ">
+                    <strong><a class="section-title" href={{model.homepage}}>{{model.Name}}</a>
+                    </strong>
+                </h1>
+                <h1 class="text-center"><strong>Cost : $({{model.Cost}})</strong>
+                </h1>
+
+                <hr/>
+				<div class="content">
+					<div class="row">
+						<div class="col-sm-12">
+                                <figure class="movie-poster">
+                                    <img ng-src={{model.Icon}}
+                                         onerror="this.src='http://i.amz.mshcdn.com/EcodAVAlQrEOPy8QfgBFO-vZP0M=/fit-in/850x850/http%3A%2F%2Fmashable.com%2Fwp-content%2Fgallery%2Fentertaining-404-error-pages%2Fchrisjennings.jpg';">
+                                </figure>
+
+						</div>
+                    </div>
+
+                    <hr/>
+                    <h3><u>Description</u></h3>
+                    <div class="content">
+                        <div class="row">
+                            <p class="col-md-12">
+                                <span>{{model.Description}}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+
+                    <h1>Course Materials</h1>
+                    <h2>Materials overview:</h2>
+
+                    <button type="button" class="btn unfollow-btn  btn-info " data-toggle="collapse"
+                            data-target="#demo4" style="margin-top:10px;margin-bottom: 10px">Full List</button>
+
+                    <div id="demo4"  class="content collapse">
+                        <div class="row" style="border: 3px solid slategray">
+                            <div style="margin: 0;" class="col-sm-4 hidden-xs"><span style="font-size: 20px">Material Order</span></div>
+                            <div style="margin: 0;" class="col-sm-4 col-xs-10"><span style="font-size: 20px">Material Name</span></div>
+                            <div style="margin: 0;" class="col-sm-4 col-xs-2"><span style="font-size: 20px">Complete</span></div>
+                        </div>
+
+                        <div class="row" style="border: 3px solid slategray">
+                            COMPLETE MATERIALS
+                            <div style="margin-top: 5px " ng-repeat="material in  completedMaterials track by $index" class="col-xs-12">
+                                <div class="col-sm-4 hidden-xs">
+                                    <span>{{material.order}}</span>
+                                </div>
+                                <div class="col-sm-4 col-xs-10">
+                                    <span>{{material.completes}}</span>
+                                </div>
+                                <div class="col-sm-4 col-xs-2">
+                                    <span>Yes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        INCOMPLETE MATERIALS
+
+                        <div class="row" style="border: 3px solid slategray">
+                            <div style="margin-top: 5px " ng-repeat="(index,material) in incompleteMaterials track by $index" class="col-xs-12">
+                                <div class="col-sm-4 hidden-xs">
+                                    <span>{{material.order}}</span>
+                                </div>
+                                <div class="col-sm-4 col-xs-10">
+                                    <button class="btn" ng-click="markAsComplete(material,index)"><span>{{material.incomplete}}</span></button>
+                                </div>
+                                <div class="col-sm-4 col-xs-2">
+                                    <span>No</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <button type="button" class="btn unfollow-btn  btn-info " data-toggle="collapse"
+                            data-target="#demo5" style="margin-top:10px;margin-bottom: 10px">Full List</button>
+
+                    <div id="demo5"  class="content collapse">
+                        <div class="row" style="border: 3px solid slategray">
+                            <div style="margin: 0;" class="col-sm-4 hidden-xs"><span style="font-size: 20px">Material Order</span></div>
+                            <div style="margin: 0;" class="col-sm-4 col-xs-10"><span style="font-size: 20px">Material Name</span></div>
+                        </div>
+
+                        <div class="row" style="border: 3px solid slategray">
+                            <div style="margin-top: 5px " ng-repeat="material in  model.courseMaterials track by $index" class="col-xs-12">
+                                <div class="col-sm-4 hidden-xs">
+                                    <span>{{material.order}}</span>
+                                </div>
+                                <!--<div class="col-sm-2 col-xs-6">-->
+                                <!--<img class="img-circle" height="100" ng-src={{actor.profile_path}}-->
+                                <!--onerror="this.src='http://i.amz.mshcdn.com/EcodAVAlQrEOPy8QfgBFO-vZP0M=/fit-in/850x850/http%3A%2F%2Fmashable.com%2Fwp-content%2Fgallery%2Fentertaining-404-error-pages%2Fchrisjennings.jpg';">-->
+                                <!--</div>-->
+                                <div class="col-sm-8 col-xs-12">
+                                    <span>{{material.materialName}}</span>
+                                </div>
+                                <!--<div class="col-sm-2 hidden-xs">-->
+                                <!--<span>{{actor.character}}</span>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <h2>Details</h2>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <p>
+                                <strong>CourseId:</strong>
+                                <span>{{model.CourseID}}</span>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+			</div>
+		</div> <!-- .container -->
+	</div>
+
+
+
+    </div>
+<div ng-include="'views/common/templates/footer.view.client.html'"></div>
+
+	<script src="../../../js/jquery-1.11.1.min.js"></script>
+	<script src="../../../js/plugins.js"></script>
+	<script src="../../../js/app.js"></script>

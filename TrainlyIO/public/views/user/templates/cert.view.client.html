@@ -1,0 +1,70 @@
+<style>
+    html,body{
+        height:100%;
+        width:100%;
+    }
+    .certBoundary{
+        border-style: double;
+        border-width: 7px;
+        height: 400px;
+        width:700px;
+        text-align:center;
+        border-color:black;
+        background-image:url("../images/cert.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+
+    }
+    .certTitle{
+
+        text-decoration: underline;
+        margin-top: 35px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .printBtn{
+        text-align: center;
+        margin-top: 2%;
+    }
+
+    .certSt{
+        font-style: italic;
+        font-size: 15px;
+    }
+    .date{
+        font-size:15px;
+    }
+    .date_comp{
+        color:black;
+        font-weight:bold;
+
+    }
+    .printBtn{
+
+    }
+</style>
+
+<script>
+function printFn(){
+var printContents = document.getElementById("divi").innerHTML;
+  var popupWin = window.open('', '_blank', 'width=500,height=500');
+  popupWin.document.open();
+  popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()" class="container certBoundary">' + printContents + '</body></html>');
+  popupWin.document.close();}
+</script>
+
+<br/>
+<br/>
+<br/>
+<div class="container certBoundary" id="divi">
+   <p class="certTitle">Certificate of Completion</p>
+
+   <p class="certSt">This certifies that {{model.firstName}} {{model.lastName}} has successfully completed the course on {{model.Name}}</p>
+
+   <p class="date">Date :  <span class="date_comp">{{ model.date|  date:'yyyy-MM-dd'}}</span></p>
+</div>
+<div class="printBtn">
+<button type="button" class="btn" onClick="printFn()">PRINT</button>
+</div>

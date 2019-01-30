@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+
+		<title>Trainlyio</title>
+
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+		<!-- IMPORTANT LIBRARIES -->
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script src="js/jquery.ui.touch-punch.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="app.js"></script>
+		<script src="config.js"></script>
+
+		<script src="myDirective.js"></script>
+		<!-- ALL CONTROLLERS -->
+
+		<script src="views/course/controllers/course-review.controller.client.js"> </script>
+		<script src="views/course/controllers/offered-courses-list.controller.client.js"></script>
+		<script src="views/course/controllers/about-enrolled-courses.controller.client.js"></script>
+		<script src="views/course/controllers/enrolled-courses.controller.client.js"></script>
+		<script src="views/course/controllers/interested-courses-list.controller.client.js"></script>
+		<script src="views/course/controllers/completed-courses-list.controller.client.js"></script>
+		<script src="views/home/controllers/home.controller.client.js"></script>
+
+		<script src="views/user/controller/profile.controller.client.js"></script>
+		<script src="views/user/controller/complex.controller.client.js"></script>
+		<script src="views/user/controller/cert.controller.client.js"></script>
+		<script src="views/user/controller/login.controller.client.js"></script>
+
+		<!--All SERVICES-->
+
+		<script src="services/user.service.client.js"></script>
+
+		<!-- Loading third party fonts -->
+		<link href="css/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
+		<link href="css/bootstrap-theme.css" rel="stylesheet" >
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--<link href="css/lessStyle.scss" rel="stylesheet/scss">-->
+		<!--<script src="//cdnjs.cloudflare.com/ajax/libs/sass.js/0.6.3/sass.min.js"></script>-->
+
+		<!-- Loading main css file -->
+
+		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/style2.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet/less" type="text/css" href="less/lessStyle.less" />
+		<link rel="stylesheet/scss" type="text/css" href="scss/style.scss">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+
+	</head>
+
+	<body ng-app="WDP" >
+
+		<div ng-view autoscroll="true"></div>
+
+		
+	</body>
+
+</html>

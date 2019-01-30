@@ -1,0 +1,73 @@
+
+<div class="content">
+
+   <div class="page-section hidden-xs">
+       <div class="row  sorter ">
+             <div class="col-xs-10 col-sm-9">
+                <div class=''>
+                    <p style="color: #b92c28;font-size: 20px; margin-left: 160px;"> Course Name
+                    </p>
+                </div>
+             </div>
+               <!--<div class="col-sm-3"><p  style="color: #b92c28;font-size: 20px; "> Course Rating</p></div>-->
+                <div class="col-sm-3 col-xs-2" style="color: #b92c28;font-size: 20px;">
+                    Enroll/Like
+                </div>
+
+        </div>
+   </div>
+
+
+   <div class="">
+         <div ng-repeat="course in model.courses" class="row page-section">
+
+              <div class="movie-list">
+                  <div class="col-xs-12 col-sm-9">
+                      <!--<span style="display:inline"> {{$index+1 + model.pagenumber}} .</span>-->
+                      <figure >
+                         <img id="user-picture" class="col-xs-4" src="../../../images/c_icon.png"  alt="No Image Found">
+                     </figure>
+                     <a href="#!/course/{{course.CourseID}}"> <p class="movie-name" >{{course.CourseID}}{{course.Name}}
+                      </p></a>
+                      <span>Primary Topic: {{course.PrimaryTopic}}
+                      </span><br/>
+                      <span>Cost: {{course.Cost}}
+                      </span>
+                     <p class="movie-like hidden-sm hidden-md hidden-lg "><span>
+                            <a style="padding-right:15px;" ng-hide="model.enrolledCourses.indexOf(course.CourseID)>-1" href=""
+                               ng-click="model.enroll(course.CourseID)" class="fa fa-plus"></a>
+                            </span>
+                            <span>
+                                <a style="padding-right:15px;" ng-show="model.enrolledCourses.indexOf(course.CourseID)>-1" href=""
+                               ng-click="model.removeenroll(course.CourseID)" class="fa fa-check"></a>
+                            </span>
+                            <span>
+                                <a style="padding-right:15px;" ng-show="model.likedCourses.indexOf(course.CourseID)>-1" href=""
+                                   ng-click="model.likeCourse(course.CourseID)" class="fa fa-check"></a>
+                            </span>
+                            <span>
+                                <a style="padding-right:15px;" ng-show="model.likedCourses.indexOf(course.CourseID)>-1" href=""
+                                   ng-click="model.unlikeCourse(course.CourseID)" class="fa fa-check"></a>
+                            </span>
+                      </p>
+
+                  </div>
+                <div class="col-sm-3 hidden-xs">
+                    <p class="movie-like"><span>
+                        <a style="padding-right:15px;" ng-hide="model.enrolledCourses.indexOf(course.CourseID)>-1" href="" ng-click="model.enroll(course.CourseID)" class="fa fa-plus"></a>
+                    </span>
+                    <span>
+                        <a style="padding-right:15px;" ng-show="model.enrolledCourses.indexOf(course.CourseID)>-1" href="" ng-click="model.removeenroll(course.CourseID)" class="fa fa-check"></a>
+                    </span>
+                    <span style="font-size: 30px">
+                        <a ng-hide="model.likedCourses.indexOf(course.CourseID)>-1" href="" ng-click="model.likeCourse(course.CourseID)" class="fa fa-thumbs-o-up"></a>
+                    </span>
+                    <span style="font-size: 30px">
+                        <a ng-show="model.likedCourses.indexOf(course.CourseID)>-1" href="" ng-click="model.unlikeCourse(course.CourseID)" class="fa fa-thumbs-up"></a>
+                    </span>
+                    </p>
+                </div>
+             </div>
+         </div>
+   </div>
+</div>

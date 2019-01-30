@@ -1,0 +1,218 @@
+<!--<div class="profile-header row">-->
+    <!--<div class="col-xs-12">-->
+        <!--<div id="user-picture">-->
+            <!--<img id="avatar" style="height: 145px;width: 120px" class="image"-->
+                 <!--ng-src="{{model.user.url}}" onerror="this.src='../../../images/profile.jpg'">-->
+            <!--&lt;!&ndash;<img id="avatar" style="height: 145px;width: 120px" class="image"&ndash;&gt;-->
+                 <!--&lt;!&ndash;ng-src="../../../images/profile.jpg" onerror="this.src='../../../images/profile.jpg'">&ndash;&gt;-->
+            <!--<label for="profilePic" style="color: #337ab7;cursor: pointer;font-size: 10px">Change Picture</label>-->
+            <!--&lt;!&ndash;<div class="fake"><span><a href>Link!</a><input type='file' /><span>&ndash;&gt;-->
+            <!--<div>-->
+                <!--&lt;!&ndash;<label style="color:blue;cursor: pointer;" for="input">Edit</label>&ndash;&gt;-->
+
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="user-details">-->
+            <!--<h1>{{model.user.username}}</h1>-->
+            <!--<form action="/api/project/uploadProfileImage"   method="post" enctype="multipart/form-data">-->
+                <!--<input  id="profilePic" style="display: none" name="myFile" ng-model="model.myFile"    type="file" class="form-control" onchange="form.submit()"/>-->
+                <!--<input  name="userId"    value="{{model.user.StudentEmail}}"   style="display: none"/>-->
+                <!--<input name="callbackUrl" value="/#!{{model.curUrl}}" style="display: none">-->
+
+            <!--</form>-->
+
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<style>
+
+    .modal-backdrop{
+        z-index: -1!important;
+    }
+
+    .reqList{
+        height:320px;
+        overflow-y:scroll;
+    }
+    .eachReq{
+        height:80px;
+    }
+    .reqCol{
+        float:left;
+        width:25%;
+    }
+    .tb , th, td {
+
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+</style>
+
+<div class="profile-header row">
+    <div class="col-xs-12" style="margin-bottom:12px">
+        <div id="user-picture" style="display:none">
+            <img id="avatar" style="height: 145px;width: 120px" class="image"
+                 ng-src="{{model.user.url}}" onerror="this.src='../../../images/profile.jpg'">
+            <!--<img id="avatar" style="height: 145px;width: 120px" class="image"-->
+            <!--ng-src="../../../images/profile.jpg" onerror="this.src='../../../images/profile.jpg'">-->
+            <label for="profilePic" style="color: #337ab7;cursor: pointer;font-size: 10px">Change Picture</label>
+            <!--<div class="fake"><span><a href>Link!</a><input type='file' /><span>-->
+            <div>
+                <!--<label style="color:blue;cursor: pointer;" for="input">Edit</label>-->
+
+            </div>
+        </div>
+        <div id="user-details">
+            <h1>{{model.user.username}}</h1>
+            <form action="/api/project/uploadProfileImage"   method="post" enctype="multipart/form-data">
+                <input  id="profilePic" style="display: none" name="myFile" ng-model="model.myFile"    type="file" class="form-control" onchange="form.submit()"/>
+                <input  name="userId"    value="{{model.user.StudentEmail}}"   style="display: none"/>
+                <input name="callbackUrl" value="/#!{{model.curUrl}}" style="display: none">
+
+            </form>
+
+
+        </div>
+
+
+        <button ng-show="isFaculty!=1;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#RegFaculty">Register as Faculty</button>
+        <button ng-show="isAdmin!=1;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#RegAdmin">Register as Admin</button>
+        <button ng-show="isAdmin==1" type="button" class="btn btn-info btn-lg" ng-click="viewPending()" data-toggle="modal" data-target="#Requests">View requests</button>
+
+
+
+    </div>
+
+    <div class="modal  fade"  id="RegFaculty" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Register as a faculty</h4>
+                </div>
+                <div class="modal-body regForm">
+
+                    <form role="form">
+
+                        <div class="form-group">
+                            <label >Affiliation:</label>
+                            <input type="text" class="form-control" id="facAff" placeholder="Enter affiliation" ng-model="facAff">
+                        </div>
+
+                        <div class="form-group">
+                            <label >Website:</label>
+                            <input type="text" class="form-control" id="facWebsite" placeholder="Enter website url" ng-model="facWebsite">
+                        </div>
+                        <div class="form-group">
+                            <label >Title:</label>
+                            <input type="text" class="form-control" id="facTitle" placeholder="Enter title" ng-model="facTitle">
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="confirmFacultyReq()">SEND REQUEST</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal  fade"  id="RegAdmin" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Register as an Admin</h4>
+                </div>
+                <div class="modal-body regForm">
+
+                    <p>Confirm?</p>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="confirmAdminReq()">SEND REQUEST</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal  fade"  id="Requests" role="dialog" >
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Approve or deny requests</h4>
+                </div>
+                <div class="modal-body regForm reqList">
+<p ng-show="pendingRequests.length==0">No requests pending</p>
+                    <table class="tb" ng-hide="pendingRequests.length == 0">
+                        <tr>
+                            <td>Email</td>
+                            <td>Role</td>
+                            <td>Website</td>
+                            <td>Affiliation</td>
+                            <td>Title</td>
+                            <td>Action</td>
+
+                        </tr>
+                        <tr ng-repeat="(index, record) in pendingRequests" class="eachReq">
+                            <td>{{record.email}}</td>
+                            <td>{{record.role}}</td>
+                            <td>{{record.website}}</td>
+                            <td>{{record.affiliation}}</td>
+                            <td>{{record.title}}</td>
+                            <td><button ng-click="confirmPerson(record.email,record.role, index)" class="btn">Confirm</button></td>
+                        </tr>
+
+                    </table>
+
+                   <!-- <div ng-repeat="record in pendingRequests" class="eachReq">
+                        <div  class="reqCol">
+                            {{record.email}}
+                        </div>
+                        <div  class="reqCol">
+                            {{record.role}}
+                        </div>
+                        <div class="reqCol">
+                            {{record.website}}
+                        </div>
+                        <div class="reqCol">
+                            {{record.affiliation}}
+                        </div>
+                        <div class="reqCol">
+                            {{record.title}}
+                        </div>
+                        <div class="reqCol">
+                            <button ng-click="confirmPerson(record.email,record.role)" class="btn">Confirm</button>
+                           &lt;!&ndash; <button ng-click="rejectPerson(record.email,record.role)" class="btn">Reject</button>&ndash;&gt;
+                        </div>
+                    </div>-->
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

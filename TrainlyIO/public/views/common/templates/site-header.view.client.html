@@ -1,0 +1,101 @@
+<style>
+    .header1{
+        height: 100%;
+        text-align: center;
+    }
+    .site-header{
+        height: 100%;
+        padding: 0;
+        display: table;
+        width: 100%;
+    }
+    .header-container{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .siteheader-nav{
+        margin-bottom: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+</style>
+<head>
+    <script src="../../../js/jquery.js"></script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('#search-trigger').click(function () {
+                $('#search-input').css({'width':'150px','display':'initial'});
+            })
+        });
+
+        $(document).click(function (e) {
+            if(!$(e.target).closest('.ngen-search-form').length){
+                $('#search-input').css({'width':'0px','display':'none'});
+            }
+        });
+    </script>
+</head>
+
+<header>
+
+<div class="site-header">
+    <div class="container">
+        <!-- #branding -->
+        <nav class="navbar navbar-default">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="margin-top: 15px;">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand pull-left" href="#!/home">
+                        <img src="../../../images/trainlyio_logo.png" style="height: 50px;padding: 0 0 0 10px;">
+                    </a>
+                </div>
+
+
+                <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                        <li ng-if="model.isLoggedIn.StudentEmail">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Courses<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#!/course/currentlyEnrolled">Enrolled</a></li>
+                                <li><a href="#!/interestedCourses">Interested</a></li>
+                                <li><a href="#!/completedCourses">Completed</a></li>
+                                <li class="dropdown">
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a  href="#!/course/offeredCourses" class="dropdown-toggle" data-toggle="dropdown">Offered Courses
+                                <!--<b class="caret"></b>-->
+                            </a>
+                        </li>
+                        <!--<li ><a ng-click="showLoginModel()" data-target="#myLoginModal" data-toggle="modal" >Login</a></li>-->
+                        <li ng-if="!model.isLoggedIn.StudentID"><a href="#!/login">Login</a></li>
+                        <!--<li ng-if="model.isLoggedIn._id"><a href="#!/profile">Profile</a></li>-->
+                        <li ng-if="model.isLoggedIn.StudentID" class="dropdown">
+                            <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> {{model.isLoggedIn.StudentEmail}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#!/profile">Profile</a></li>
+                                <li><a href="#!/user/enrolledlist">Enrolled List</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a  ng-click="model.logout()">Log out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                </div><!-- /.navbar-collapse -->
+        </nav>
+
+    </div>
+
+</div>
+<div ng-include="'views/common/templates/login.view.client.html'"></div>
+</header>

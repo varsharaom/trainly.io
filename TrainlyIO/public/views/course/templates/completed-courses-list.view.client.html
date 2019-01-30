@@ -1,0 +1,59 @@
+<div ng-include="'views/common/templates/site-header.view.client.html'"></div>
+
+<div class="main-body">
+    <div class="container">
+        <div class="page">
+            <div >
+                <div class="go-back"><a go-back>Go Back</a></div>
+                <ol class="breadcrumb">
+                    <li> <a href="#!/home">Home</a></li>
+                    <li class="active">Completed Courses</li>
+                </ol>
+            </div>
+            <h1>Completed Courses with Course Materials</h1>
+
+            <div class="content">
+
+                <div class="page-section hidden-xs">
+                    <div class="row  sorter ">
+                        <div class="col-xs-12">
+                            <div class=''>
+                                <p style="color: #b92c28;font-size: 20px; margin-left: 160px;"> Course Name
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="">
+                    <div ng-repeat="course in model.courses" class="row page-section">
+
+                        <div class="movie-list">
+                            <div class="col-xs-12">
+                                <!--<span style="display:inline"> {{$index+1 + model.pagenumber}} .</span>-->
+                                <figure>
+                                    <img id="user-picture" class="col-xs-4" src="../../../images/c_icon.png"
+                                         alt="No Image Found">
+                                </figure>
+                                <a href="#!/course/showCertificate/{{course.CourseID}}"><p class="movie-name">
+                                    {{course.CourseID}}{{course.Name}}
+                                </p></a>
+                                <span>Primary Topic: {{course.PrimaryTopic}}
+                                </span><br/>
+                                <span>Secondary Topic: {{course.sec_topics}}</span><br/>
+                                <span ng-show="{{course.ranking}}">Average Rating: {{course.ranking+".0"}}</span>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div ng-include="'views/common/templates/footer.view.client.html'"></div>
